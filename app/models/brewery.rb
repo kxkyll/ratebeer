@@ -1,14 +1,21 @@
 class Brewery < ActiveRecord::Base
     include CalculateAverage
-
-    validates :name, presence: true
-    validates_numericality_of :year,    {:greater_than_or_equal_to => 1042,
-                                        :less_than_or_equal_to => 2014,
-                                        :only_integer => true}
-  
+    validate :year_must_be_between_1042_and_this_year
 
     has_many :beers, :dependent => :destroy
     has_many :ratings, :through => :beers
+
+
+    validates :name, presence: true
+    
+    validates_numericality_of :year,    {:only_integer => true}
+  
+    #tested with changing the system clock  
+    def year_must_be_between_1042_and_this_year
+      if year.present? && year < 1042 || year.present? && year > Time.new.year
+         errors.add(:year, "must be equal or between 1042 and this year")
+      end
+    end
 
     def print_report
         puts self.name
