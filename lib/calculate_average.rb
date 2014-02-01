@@ -1,6 +1,6 @@
 module CalculateAverage
     def average_rating
         #ratings.average('score')
-        ratings.inject(0) { |sum, s| sum + s.score } / ratings.count
+        ratings.inject(0.0) { |sum, s| sum + s.score } / ratings.count
     end
 end
