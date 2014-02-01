@@ -1,0 +1,25 @@
+<h1>Listing memberships</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Beer club</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @memberships.each do |membership| %>
+      <tr>
+        <td><%= link_to membership.beer_club, membership.beer_club %></td>
+        <td><%= membership.user %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

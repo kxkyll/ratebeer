@@ -1,14 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
+<h2>
+    <%= @user.username %>
+</h2>
 
 <% if @user.ratings.empty? %>
-  <p> User has not yet given any ratings! </p>
+  <p> has not yet given any ratings! </p>
 <% else %>
-  <p> User has made <%= pluralize(@user.ratings.count, 'rating') %>, average <%= @user.average_rating %> </p>
+  <p> has made <%= pluralize(@user.ratings.count, 'rating') %>, average <%= @user.average_rating %> </p>
 <% end %>
 
 <ul>
@@ -19,6 +18,18 @@
    
  <% end %> 
 </ul>
+
+<p> <% if @user.beer_clubs.empty? %> 
+        is not a member of a beer club
+    <%else %>
+        is a member of <%= pluralize(@user.beer_clubs.count, 'beer club')%>
+        <ul>
+        <% @user.beer_clubs.each do |beer_club| %>
+            <li> <%= link_to beer_club, beer_club_path %>  </li>         
+        <% end %>
+        </ul>
+    <% end %>
+</p>
 
 
 
