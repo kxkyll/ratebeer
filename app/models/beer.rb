@@ -1,6 +1,8 @@
 class Beer < ActiveRecord::Base
     include CalculateAverage
 
+    validates :name, presence: true
+
     belongs_to :brewery
     has_many :ratings, :dependent => :destroy
     
