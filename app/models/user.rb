@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
     validates :username, uniqueness: true, 
                          length: { minimum: 3, :maximum => 15 }
 
-    validates_length_of :password, :minimum => 4
-    validates_format_of :password, :with => /[0-9]+[A-Z]+/
+    #validates_length_of :password, :minimum => 4
+    validates_format_of :password, :with => /([0-9]+[A-Z]+)|([A-Z]+[0-9]+)/
                          
     has_many :ratings, dependent: :destroy
     has_many :beers, through: :ratings
