@@ -21,4 +21,5 @@ describe Beer do
     expect(beer.valid?).to be(false)
     expect(Beer.count).to eq(0)
   end
+    
 end
