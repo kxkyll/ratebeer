@@ -28,4 +28,11 @@ class User < ActiveRecord::Base
         ratingsByStyle = ratingsByStyle.each_pair{ |style,score| ratingsByStyle[style] = score.sum(&:score) / score.size}
         ratingsByStyle.sort_by{ |style,score| score}.last[0]
     end
+
+    def favorite_brewery
+       return nil if ratings.empty?
+       ratingsByBrewery = ratings.group_by{ |r| r.beer.brewery}
+       ratingsByBrewery = ratingsByBrewery.each_pair{ |brewery, score| ratingsByBrewery[brewery] = score.sum(&:score) /score.size}
+       ratingsByBrewery.sort_by{ |brewery, score| score}.last[0]
+    end
 end
