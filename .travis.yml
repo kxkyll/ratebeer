@@ -1,10 +1,16 @@
 language: ruby
-
 rvm:
- - 2.0.0
-
+- 2.0.0
 script:
- - bundle exec rake db:migrate --trace
- - RAILS_ENV=test bundle exec rake db:migrate --trace
- - bundle exec rake db:test:prepare
- - bundle exec rspec -fd spec/
+- bundle exec rake db:migrate --trace
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec -fd spec/
+deploy:
+  provider: heroku
+  api_key:
+    secure: BYZHbqN61GauJri7IWzMmns5guT9I0XvvBbwuR0IkBt5Ap8RgURTt2aQXjl7AWEuYpWywh0tr/YgIfZMJO5PS++rchdRfVOs4HQVZhYomKQanhvqU6K1hfMgeLyU5r/DVQ1Nc8MWf1AKDjaLislcN0oJO1/3ly9lFQTTREtj8tI=
+  app: dry-dusk-9110
+  on:
+    repo: kxkyll/ratebeer
+  run: "rake db:migrate"
