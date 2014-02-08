@@ -21,4 +21,11 @@ class User < ActiveRecord::Base
         return nil if ratings.empty?
         ratings.order(score: :desc).limit(1).first.beer
     end
+
+    def favorite_style
+        return nil if ratings.empty?
+        ratingsByStyle = ratings.group_by{ |r| r.beer.style}
+        ratingsByStyle = ratingsByStyle.each_pair{ |style,score| ratingsByStyle[style] = score.sum(&:score) / score.size}
+        ratingsByStyle.sort_by{ |style,score| score}.last[0]
+    end
 end

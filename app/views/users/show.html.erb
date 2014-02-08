@@ -8,6 +8,7 @@
   <p> has not yet given any ratings! </p>
 <% else %>
   <p> has made <%= pluralize(@user.ratings.count, 'rating') %>, average <%= @user.average_rating %> </p>
+  <p> Favorite style: <%= @user.favorite_style %> </p>
 <% end %>
 
 <ul>

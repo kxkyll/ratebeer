@@ -68,6 +68,30 @@ describe User do
         end
     end
 
+    describe "favorite style" do
+        let(:user) { FactoryGirl.create(:user) }
+    
+        it "has method for determining the favorite_style" do
+       
+            user.should respond_to :favorite_style
+        end
+
+        it "without ratings does not have a favorite style" do
+
+            expect(user.ratings.count).to eq(0)
+            expect(user.favorite_style).to eq(nil)
+        end
+
+        it "is the only style if only one rating" do
+            beer = FactoryGirl.create(:beer)
+            rating = FactoryGirl.create(:rating, beer:beer, user:user)
+
+            expect(user.ratings.count).to eq(1)
+            expect(user.favorite_style).to eq(beer.style)
+        end
+    end
+
+
     def create_beer_with_rating(score, user)
         beer = FactoryGirl.create(:beer)
         FactoryGirl.create(:rating, score:score, beer:beer, user:user)
