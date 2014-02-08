@@ -103,7 +103,8 @@ describe User do
         let(:user) { FactoryGirl.create(:user) }
     
         it "has method for determining the favorite_brewery" do
-       
+            BeerClub
+            BeerClubsController
             user.should respond_to :favorite_brewery
         end
         it "without ratings does not have a favorite brewery" do

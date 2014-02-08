@@ -7,6 +7,7 @@ gem 'rails', '4.0.2'
 # and postgresql in production (Heroku)
 group :development, :test do
   gem 'sqlite3'
+  gem 'simplecov', require: false
 end
 
 group :production do
