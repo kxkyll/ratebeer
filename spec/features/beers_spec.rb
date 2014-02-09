@@ -2,8 +2,10 @@ require 'spec_helper'
 
 describe "Beer" do
     before :each do
-    FactoryGirl.create :brewery, name:"Koff"
-  end
+        FactoryGirl.create :user
+        FactoryGirl.create :brewery, name:"Koff"
+        sign_in(username:"Pekka", password:"Foobar1")
+    end
 
     it "when name given, is added to the system" do
         visit new_beer_path
