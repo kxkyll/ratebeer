@@ -5,6 +5,14 @@ class BeermappingApi
     
   end
 
+  def self.pubs_in(city, id)
+   
+    places = Rails.cache.read(city)
+    places.find{ |p| p.id == id}
+
+  end
+
+  
   private
 
   def self.fetch_places_in(city)

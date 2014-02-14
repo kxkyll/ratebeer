@@ -20,9 +20,12 @@ Ratebeer::Application.routes.draw do
   
   resources :ratings, :only => [:index, :new, :create, :destroy]
 
-  get 'places', to: 'places#index'
-  post 'places', to:'places#search'
+  resources :places, only:[:index, :show]
+  # mikä generoi samat polut kuin seuraavat kaksi     
+  # get 'places', to:'places#index'
+  # get 'places/:id', to:'places#show'
 
+  post 'places', to:'places#search'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
