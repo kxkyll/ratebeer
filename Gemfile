@@ -56,6 +56,8 @@ group :test do
   gem 'launchy'
 end
 
+gem 'httparty'
+
 #group :test do
 #  gem 'factory_girl_rails'
 #end
