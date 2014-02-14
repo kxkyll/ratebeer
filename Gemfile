@@ -59,6 +59,8 @@ end
 
 gem 'httparty'
 
+gem "rails-settings-cached", "0.3.1"
+
 #group :test do
 #  gem 'factory_girl_rails'
 #end
