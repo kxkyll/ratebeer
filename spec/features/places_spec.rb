@@ -3,19 +3,21 @@ require 'spec_helper'
 describe "Places" do
   it "if one is returned by the API, it is shown at the page" do
     BeermappingApi.stub(:places_in).with("kumpula").and_return(
-        [ Place.new(:name => "Oljenkorsi") ]
+        [ Place.new(:name => "Oljenkorsi", :id => 1) ]
     )
 
     visit places_path
     fill_in('city', with: 'kumpula')
-    click_button "Search"
 
+    click_button "Search"
+    save_and_open_page
     expect(page).to have_content "Oljenkorsi"
   end
 
   it "if three is returned by the API, three is shown at the page" do
     BeermappingApi.stub(:places_in).with("kumpula").and_return(
-        [ Place.new(:name => "Oljenkorsi"), Place.new(:name => "Kukkulan kuohu"), Place.new(:name => "Maauimalan mallas")  ]
+        [ Place.new(:name => "Oljenkorsi", :id => 1), 
+          Place.new(:name => "Kukkulan kuohu", :id => 2), Place.new(:name => "Maauimalan mallas", :id => 3)  ]
     )
 
     visit places_path
