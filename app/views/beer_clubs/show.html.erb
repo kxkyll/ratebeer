@@ -17,16 +17,15 @@
 </p>
 
 <% if current_user %>
-
-  <h4>Join to club:</h4>
-
-
-  <%= form_for(@membership) do |f| %>
-    <%= f.hidden_field :beer_club_id %>
-    <%= f.hidden_field :user_id %>
-    <%= f.submit value:"join the club" %>
+  <% if not @beer_club.users.include?(current_user) %>
+    
+    <h4>Join to club:</h4>
+      <%= form_for(@membership) do |f| %>
+        <%= f.hidden_field :beer_club_id %>
+        <%= f.hidden_field :user_id %>
+        <%= f.submit value:"join the club" %>
+      <% end %>
   <% end %>
-
   <%= link_to 'Edit', edit_beer_club_path(@beer_club) %> |
   <%= link_to 'Back', beer_clubs_path %>
 
