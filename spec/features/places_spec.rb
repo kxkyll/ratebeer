@@ -10,7 +10,7 @@ describe "Places" do
     fill_in('city', with: 'kumpula')
 
     click_button "Search"
-    save_and_open_page
+    #save_and_open_page
     expect(page).to have_content "Oljenkorsi"
   end
 
