@@ -2,11 +2,13 @@ require 'spec_helper'
 include OwnTestHelper
 
 describe "Rating" do
+  let!(:style) {FactoryGirl.create :style}
+  let!(:style2) {FactoryGirl.create :style, name: "Ale"}
   let!(:brewery) { FactoryGirl.create :brewery, name:"Koff" }
   let!(:brewery2) { FactoryGirl.create :brewery, name:"Puff" }
-  let!(:beer1) { FactoryGirl.create :beer, name:"iso 3", brewery:brewery }
-  let!(:beer2) { FactoryGirl.create :beer, name:"Karhu", brewery:brewery }
-  let!(:beer3) { FactoryGirl.create :beer, name:"Brown", style:"Ale", brewery:brewery2 }
+  let!(:beer1) { FactoryGirl.create :beer, name:"iso 3", style:style, brewery:brewery }
+  let!(:beer2) { FactoryGirl.create :beer, name:"Karhu", style:style, brewery:brewery }
+  let!(:beer3) { FactoryGirl.create :beer, name:"Brown",  style:style2, brewery:brewery2 }
   let!(:user) { FactoryGirl.create :user }
   let!(:user2) { FactoryGirl.create :user, username:"Pirkka", password:"Sala1", password_confirmation:"Sala1"}
 

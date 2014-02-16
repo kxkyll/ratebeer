@@ -32,6 +32,8 @@ class BeermappingApi
   def self.key
     Settings.beermapping_apikey
     #"8efe2ddeac2e5dca97731d3907ed473b"
+    #Aseta konsolista käsin arvo apikey:lle seuraavalla komennolla
+    #Settings.beermapping_apikey = "8efe2ddeac2e5dca97731d3907ed473b"
   end
 
 end

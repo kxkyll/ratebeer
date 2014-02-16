@@ -70,6 +70,7 @@ describe User do
 
     describe "favorite style" do
         let(:user) { FactoryGirl.create(:user) }
+        let(:style) {FactoryGirl.create :style, name: "Bock"}
     
         it "has method for determining the favorite_style" do
        
@@ -83,14 +84,14 @@ describe User do
         end
 
         it "is the only style if only one rating" do
-            favorite = create_beer_with_style(26, user, "Bock", nil)
+            favorite = create_beer_with_style(26, user, style, nil)
 
             expect(user.ratings.count).to eq(1)
             expect(user.favorite_style).to eq(favorite.style)
         end
 
         it "is the one rated highest if several ratings" do
-            favorite = create_beer_with_style(26, user, "Ale", nil)
+            favorite = create_beer_with_style(26, user, style, nil)
             create_beers_with_ratings(10, 20, 15, user)
             
             expect(user.ratings.count).to eq(4)
@@ -101,7 +102,8 @@ describe User do
 
     describe "favorite brewery" do
         let(:user) { FactoryGirl.create(:user) }
-    
+        let(:style) {FactoryGirl.create :style, name: "Bock"}
+
         it "has method for determining the favorite_brewery" do
             BeerClub
             BeerClubsController
@@ -114,14 +116,14 @@ describe User do
         end
 
         it "is the only brewery if only one rating" do
-            favorite = create_beer_with_style(26, user, "Bock", "Paulaner")
+            favorite = create_beer_with_style(26, user, style, "Paulaner")
 
             expect(user.ratings.count).to eq(1)
             expect(user.favorite_brewery).to eq(favorite.brewery)
         end
 
         it "is the one rated highest if several ratings" do
-            favorite = create_beer_with_style(26, user, "Ale", "Bryggeri")
+            favorite = create_beer_with_style(26, user, style, "Bryggeri")
             create_beers_with_ratings(7, 5, 15, 8, user)
             
             expect(user.ratings.count).to eq(5)
@@ -133,7 +135,7 @@ describe User do
 
     def create_beer_with_style(score, user, style, brewery)
         if style.nil?
-            style = "Lager"
+            style = FactoryGirl.create :style
         end
         unless brewery.nil?
             brewery = FactoryGirl.create(:brewery, name:brewery)

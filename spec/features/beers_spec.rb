@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "Beer" do
     before :each do
+        FactoryGirl.create :style
         FactoryGirl.create :user
         FactoryGirl.create :brewery, name:"Koff"
         sign_in(username:"Pekka", password:"Foobar1")
@@ -11,6 +12,7 @@ describe "Beer" do
         visit new_beer_path
         #save_and_open_page
         fill_in('beer_name', with:'BeerToBeAdded')
+        select('Lager', from:'beer[style_id]')
         
 
         expect{
