@@ -29,6 +29,9 @@ Ratebeer::Application.routes.draw do
 
   post 'places', to:'places#search'
 
+  #javascript kokeiluja varten
+  get 'beerlist', to:'beers#list'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
