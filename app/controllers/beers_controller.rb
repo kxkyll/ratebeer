@@ -1,5 +1,5 @@
 class BeersController < ApplicationController
-  before_action :ensure_that_signed_in, except: [:index, :show, :list]
+  before_action :ensure_that_signed_in, except: [:index, :show, :list, :nglist]
   before_action :set_beer, only: [:show, :edit, :update, :destroy]
   before_action :set_breweries_and_styles_for_template, only: [:new, :edit]
   before_action :ensure_that_signed_as_admin, only: [:destroy]
@@ -85,8 +85,12 @@ class BeersController < ApplicationController
     end
   end
 
-  # javascrip kokeiluja varten
+  # javascripkokeiluja varten
   def list
+  end
+
+  #angularkokeiluja varten
+  def nglist
   end
 
   private
