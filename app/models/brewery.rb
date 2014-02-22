@@ -1,15 +1,17 @@
 class Brewery < ActiveRecord::Base
     include CalculateAverage
     validate :year_must_be_between_1042_and_this_year
+    validates :name, presence: true 
+    validates_numericality_of :year,    {:only_integer => true}
+  
+    scope :active,  -> { where active:true}
+    scope :retired, -> { where active: [nil, false] } 
 
     has_many :beers, :dependent => :destroy
     has_many :ratings, :through => :beers
 
 
-    validates :name, presence: true
-    
-    validates_numericality_of :year,    {:only_integer => true}
-  
+
     #tested with changing the system clock  
     def year_must_be_between_1042_and_this_year
       if year.present? && year < 1042 || year.present? && year > Time.new.year
