@@ -40,14 +40,32 @@ describe "Beerlist page" do
 
   it "shows beers in alphabethical order by default", js:true do
     visit beerlist_path
-    #etsii taulukon toisen rivin (=eka datarivi)
-    find('table').find('tr:nth-child(2)')
-    save_and_open_page
+    #etsii taulukon toisen rivin (=eka datarivi) tämä siksi että taulukko ehtii
+    # latautua ennen save_and_open_page:a
+    #find('table').find('tr:nth-child(2)')
+    #save_and_open_page
     #expect(page).to have_content "Nikolai"
     find('table').find('tr:nth-child(2)').should have_content('Fastenbier')
     find('table').find('tr:nth-child(3)').should have_content('Lechte Weisse')
     find('table').find('tr:nth-child(4)').should have_content('Nikolai')
   end
 
+  it "shows beers in alphabethical order by style name", js:true do
+    visit beerlist_path
+    click_link "style"
+    
+    find('table').find('tr:nth-child(2)').should have_content('Lager')
+    find('table').find('tr:nth-child(3)').should have_content('Rauchbier')
+    find('table').find('tr:nth-child(4)').should have_content('Weizen')
+  end
+
+  it "shows beers in alphabethical order by brewery name", js:true do
+    visit beerlist_path
+    click_link "brewery"
+    
+    find('table').find('tr:nth-child(2)').should have_content('Ayinger')
+    find('table').find('tr:nth-child(3)').should have_content('Koff')
+    find('table').find('tr:nth-child(4)').should have_content('Schlenkerla')
+  end
 
 end
