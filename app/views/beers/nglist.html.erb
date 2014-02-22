@@ -7,9 +7,8 @@
 
         $scope.order = 'name';
 
-        $scope.click = function (order){
+        $scope.changeOrder = function (order){
             $scope.order = order;
-            console.log(order);
         }
 
         $scope.searchText = '';
@@ -23,9 +22,9 @@
 
   <table>
     <thead>
-    <th> <a ng-click="click('name')">name</a> </th>
-    <th> <a ng-click="click('style.name')">style</a> </th>
-    <th> <a ng-click="click('brewery.name')">brewery</a> </th>
+    <th> <a ng-click="changeOrder('name')">name</a> </th>
+    <th> <a ng-click="changeOrder('style.name')">style</a> </th>
+    <th> <a ng-click="changeOrder('brewery.name')">brewery</a> </th>
     </thead>
     <tr ng-repeat="beer in beers| orderBy:order | filter:searchText">
       <td>{{beer.name}}</td>
